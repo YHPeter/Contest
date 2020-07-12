@@ -11,7 +11,7 @@ int main()
     int new_list[600000];
     s = '#'+s;
     int n = s.size();
-    for(int i = 1; i < n; ++i){
+    for(int i = 1; i < n; ++i) {
         if (s[i] == s[i-1]){
             num+=1;
         }
