@@ -36,7 +36,11 @@
 5 6 2
 1 4
 2 1
-出: 55 你的输出: ['7 5 3\n', '3 2\n', '4 4\n', '6 4\n']
+出: 55 你的输出
+7 5 3
+3 2
+4 4
+6 4
 准输出: 1084 你的输出: ['7 6 2\n', '1 4\n', '4 1\n']
 标准输出: 15 你的输出: ['6 6 3\n', '2 4\n', '4 1\n', '5 3\n']
  7641 你的输出: ['8 7 3\n', '1 1\n', '1 5\n', '6 3\n']
@@ -54,25 +58,7 @@ for i in range(k):
     points.append([x,y])
     for a,b in [[-1,-1],[-1,0],[0,-1],[0,0]]:
         arr[x+a,y+b] = 0
-        if x+a==1: arr[0,y+b]=0
-        if y+b==1: arr[x+a,0]=0
-        # if x+a==m-1: arr[-1,y+b]=1
-        # if y+b==n-1: arr[x+a,-1]=1
-
 all_start_point = set()
-print(arr)
-start_points = np.nonzero(arr)
-for i in range(len(start_points[0])):
-    x,y = start_points[0][i],start_points[1][i]
-    count = 0
-    for a,b in [[-1,0],[1,0],[0,1],[0,-1]]:
-        try: 
-            if arr[x+a,y+b]: count+=1
-        except: pass
-    if count>=3:
-        points.append([x,y])
-    else:
-        arr[x,y] = 0
-print(points)
+print(np.nonzero(arr))
 print(arr)
 
