@@ -6,12 +6,10 @@
 4 2
 3 2 4 1
 '''
-
 n,k = map(int,input().split(' '))
 a = list(map(lambda x: int(x)%k,input().split(' ')))
 count=0
 arr = [[0]*n for _ in range(n)]
-# print(a)
 for i in range(n):
     arr[i][i] = a[i]
     for j in range(i,n):

@@ -19,5 +19,63 @@
 2 9
 输出:
 7
-: 标准输出: 9 你的输出: ['16 4\n', '14 47\n', '17 19\n', '1 3\n', '9 14\n', '13 28\n', '13 20\n', '12 15\n', '4 5\n', '6 19\n', '12 15\n', '8 16\n', '19 28\n', '14 37\n', '12 20\n', '18 21\n', '3 6\n']
+: 标准输出: 9 你的输出 
+16 4
+14 47
+17 19
+1 3
+9 14
+12 28
+13 20
+12 15
+4 5
+6 9
+12 15
+8 16
+19 28
+14 37
+12 20
+18 21
+3 6
 '''
+import numpy as np
+
+n,k = list(map(int,input().split(' ')))
+all_interval = []
+rl = []
+ll = []
+basic_line = np.zeros((n,300*1000+13),dtype = np.int)
+print(basic_line)
+max_pos,min_pos = 0, 0
+
+for i in range(n):
+    l,r = list(map(int,input().split(' ')))
+    basic_line[i][l:r] = 1
+    print(basic_line[i][:r+3])
+    max_pos,min_pos = max(max_pos, r),min(min_pos, l)
+basic_line = basic_line[...,:max_pos]
+
+sum_column = np.sum(basic_line,axis = 0)
+np.set_printoptions(threshold=np.inf)
+print(sum_column)
+nozeros = np.nonzero(basic_line[...,9])
+print(nozeros)
+pre_list = np.array([0]*n)
+max_ = np.array([0]*n)
+
+for i in range(min_pos,max_pos):
+    if sum_column[i]<k:
+        pre_list = np.array([0]*n)
+        break
+    cur_list = np.nonzero(basic_line[...,i])[0]
+
+    for i in cur_list:
+        if i in pre_list:
+            continue
+        else:
+            max_[i] = 1
+    for i in cur_list:
+        if i in cur_list:
+            continue
+        else:
+            max_[i] = 1

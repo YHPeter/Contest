@@ -10,15 +10,19 @@
 输入共两行：
 第一行：两个正整数n,x，分别表示进出人数和每次感应门开启时间。
 第二行：nn个正整数t_1,t_2...t_nt 
- '''
+
+7 3
+1 2 7 10 15 17 22
+output = 18
+'''
 
 n,x = map(int,input().split(' '))
-li = list(map(int,input().split(' ')))
+li = sorted(list(set(map(int,input().split(' ')))))
 ans = 0
-for i in range(n-1):
+for i in range(len(li)-1):
     d = li[i+1]-li[i]
-    if 0<d<=3:
+    if 0<d<x:
         ans+=d
     else:
-        ans+=3
-print(ans+3)
+        ans+=x
+print(ans+x)

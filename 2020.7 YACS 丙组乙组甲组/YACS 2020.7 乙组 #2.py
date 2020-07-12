@@ -8,7 +8,7 @@
 
 输入格式
 第一行：三个正整数 n，m 与 k；
-接下来 kk 行，每行两个整数 x_i与 y_i ，表示一个已经存在的拼块，(x_i,y_i) 表示该拼块的左上角位置。
+接下来 k 行，每行两个整数 x_i与 y_i ，表示一个已经存在的拼块，(x_i,y_i) 表示该拼块的左上角位置。
 
 输出格式
 单个整数：表示放置拼块的方案数。
@@ -25,8 +25,17 @@
 输出:
 11
 
-标准输出: 128 你的输出: ['8 8 5\n', '2 2\n', '2 5\n', '2 7\n', '6 3\n', '6 6\n']
-准输出: 27 你的输出: ['5 6 2\n', '1 4\n', '2 1\n']
+标准输出: 128 你的输出: 
+8 8 5
+2 2
+2 5
+2 7
+6 3
+6 6
+准输出: 27 你的输出:
+5 6 2
+1 4
+2 1
 出: 55 你的输出: ['7 5 3\n', '3 2\n', '4 4\n', '6 4\n']
 准输出: 1084 你的输出: ['7 6 2\n', '1 4\n', '4 1\n']
 标准输出: 15 你的输出: ['6 6 3\n', '2 4\n', '4 1\n', '5 3\n']
@@ -36,3 +45,34 @@
  出: 87 你的输出: ['6 7 4\n', '1 1\n', '1 4\n', '3 4\n', '4 6\n']
  准输出: 7641 你的输出: ['8 7 3\n', '1 1\n', '1 5\n', '6 3\n']
 '''
+import numpy as np
+n,m,k = map(int,input().split(' '))
+arr = np.ones((n,m),dtype=np.int)#np.array(n,m)
+points = []
+for i in range(k):
+    x,y = map(int,input().split(' '))
+    points.append([x,y])
+    for a,b in [[-1,-1],[-1,0],[0,-1],[0,0]]:
+        arr[x+a,y+b] = 0
+        if x+a==1: arr[0,y+b]=0
+        if y+b==1: arr[x+a,0]=0
+        # if x+a==m-1: arr[-1,y+b]=1
+        # if y+b==n-1: arr[x+a,-1]=1
+
+all_start_point = set()
+print(arr)
+start_points = np.nonzero(arr)
+for i in range(len(start_points[0])):
+    x,y = start_points[0][i],start_points[1][i]
+    count = 0
+    for a,b in [[-1,0],[1,0],[0,1],[0,-1]]:
+        try: 
+            if arr[x+a,y+b]: count+=1
+        except: pass
+    if count>=3:
+        points.append([x,y])
+    else:
+        arr[x,y] = 0
+print(points)
+print(arr)
+

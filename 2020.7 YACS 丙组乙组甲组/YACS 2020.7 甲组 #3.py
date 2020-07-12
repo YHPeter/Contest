@@ -23,8 +23,6 @@ SSBBBBASSAAABRR
 最长类回文子串为 BBBBASSAAAB
 '''
 
-
-
 s = '#'+input()
 count = 0
 new_s = ''
