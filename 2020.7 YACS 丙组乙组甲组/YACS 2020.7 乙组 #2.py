@@ -1,4 +1,4 @@
-# YACS 2020.5 乙组 #2
+# YACS 2020.7 乙组 #2
 '''小爱有很多 2×2 的积木拼块，现在她打算在一个n×m 的底板上，铺上一些积木拼块，拼块之间不能重合。底板上可能已经存在一些拼块，具体位置由输入给定。请统计小爱有多少种放置拼块的方法。
 举例来说，假设在一个3×4 的蓝色底板上，已经存在一个拼块（以红色表示）：
 01.png
@@ -17,13 +17,11 @@
 输入:
 3 4 1
 2 3
-输出:
-3
+输出:3
 
 输入:
 3 4 0
-输出:
-11
+输出:11
 
 标准输出: 128 你的输出: 
 8 8 5
@@ -32,33 +30,104 @@
 2 7
 6 3
 6 6
-准输出: 27 你的输出:
+
+输出: 27
 5 6 2
 1 4
 2 1
-出: 55 你的输出
+
+输出: 55
 7 5 3
 3 2
 4 4
 6 4
-准输出: 1084 你的输出: ['7 6 2\n', '1 4\n', '4 1\n']
+
+输出: 1084
+7 6 2
+1 4
+4 1
+
+输出: 12
+7 6 5
+1 1
+2 3
+4 1
+4 4
+6 3
+
+输出: 1242
+8 7 4
+3 3
+5 4
+6 1
+6 6
+
+输出: 87 
+6 7 4
+1 1
+1 4
+3 4
+4 6
+
+准输出: 7641 
+8 7 3
+1 1
+1 5
+6 3
 标准输出: 15 你的输出: ['6 6 3\n', '2 4\n', '4 1\n', '5 3\n']
- 7641 你的输出: ['8 7 3\n', '1 1\n', '1 5\n', '6 3\n']
- 输出: 12 你的输出: ['7 6 5\n', '1 1\n', '2 3\n', '4 1\n', '4 4\n', '6 3\n']
- 准输出: 1242 你的输出: ['8 7 4\n', '3 3\n', '5 4\n', '6 1\n', '6 6\n']
- 出: 87 你的输出: ['6 7 4\n', '1 1\n', '1 4\n', '3 4\n', '4 6\n']
- 准输出: 7641 你的输出: ['8 7 3\n', '1 1\n', '1 5\n', '6 3\n']
+标准输出: 7641 你的输出: ['8 7 3\n', '1 1\n', '1 5\n', '6 3\n']
 '''
-import numpy as np
+
 n,m,k = map(int,input().split(' '))
-arr = np.ones((n,m),dtype=np.int)#np.array(n,m)
+zeros = []
 points = []
+for i in range(1,n+1):
+    for j in range(1,m+1):
+        zeros.append([i,j])
 for i in range(k):
     x,y = map(int,input().split(' '))
     points.append([x,y])
-    for a,b in [[-1,-1],[-1,0],[0,-1],[0,0]]:
-        arr[x+a,y+b] = 0
-all_start_point = set()
-print(np.nonzero(arr))
-print(arr)
+    for a,b in [[1,1],[1,0],[0,1],[0,0]]:
+        try:
+            zeros.remove([x+a,y+b])
+        except: pass
+        try:
+            if x+a == 2: zeros.remove([1,y+b])
+        except: pass
+        try:
+            if x+a == n-1: zeros.remove([n,y+b])
+        except: pass
+        try:
+            if y+b == 2: zeros.remove([x+a,1])
+        except: pass
+        try:
+            if y+b == m-1: zeros.remove([x+a,m])
+        except: pass
 
+center_point = []
+for x,y in zeros:
+    flag = True
+    for a,b in [[1,1],[1,0],[0,1]]:
+        if not [x+a,y+b] in zeros:
+            flag = False
+            break
+    if flag:
+        center_point.append([x,y])
+ans = 0
+def f(ans,can_choose):
+    visited = []
+    for x,y in can_choose:
+        ans+=1
+        cur_choose = can_choose[::]
+        for h in visited:
+            cur_choose.remove(h)
+        for a,b in [[0,0],[1,1],[1,0],[0,1],[-1,-1],[-1,0],[0,-1],[1,-1],[-1,1]]:
+            if cur_choose==[]: break
+            if [x+a,y+b] in cur_choose:
+                cur_choose.remove([x+a,y+b])
+        if cur_choose!=[]: 
+            ans = f(ans,cur_choose)
+        visited.append([x,y])
+    return ans
+x = f(ans,center_point)
+print(x+1)
