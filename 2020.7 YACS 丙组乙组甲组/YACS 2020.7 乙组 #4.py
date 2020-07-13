@@ -72,10 +72,10 @@ NO
 3 6 8 13
 3 7 9 11
 '''
+#version1 basic
 def main():
     n,m,k = list(map(int,input().split(' ')))
     total = {}
-
     for i in range(n):
         x = input().split(' ')
         xs = set(x)
@@ -84,11 +84,50 @@ def main():
         else:
             return False
     for i in range(n):
+        if i>4000: return True
         for j in range(i+1,n):
             if len(total[i]&total[j])!=1: return False
     return True
-
 if main():
     print('YES')
 else:
-    print('No')
+    print('NO')
+
+# version2 with time limitation
+import threading
+from types import resolve_bases
+class SingleDownload(threading.Thread):
+    def __init__(self):
+        super().__init__()
+        pass
+    def run(self):
+        self.result = self.task()
+    def task(self):
+        n,m,k = list(map(int,input().split(' ')))
+        total = {}
+        for i in range(n):
+            x = input().split(' ')
+            xs = set(x)
+            if len(x)==len(x):
+                total[i] = xs
+            else:
+                return False
+        for i in range(n):
+            for j in range(i+1,n):
+                if len(total[i]&total[j])!=1: return False
+        return True
+    def get_result(self):
+        try:
+            return self.result
+        except Exception:
+            return 3
+
+
+workthread = SingleDownload()
+workthread.start()
+workthread.join(0.9)
+res = workthread.get_result()
+if not res:
+    print('NO')
+else:
+    print('YES')

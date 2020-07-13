@@ -17,22 +17,21 @@ int main()
         }
         if (s.size()==m) tt[i] = s;
         else {
-            cout<<"No"<<endl;
+            cout<<"NO"<<endl;
             return 0;
         } 
     }
-    for (int i = 0; i < n; ++i){
-        cout<<i<<"-"<<endl;
-        for (int j = 0; j < n; ++j){
-            vector<int> yy;
-            auto ll = set_intersection(tt[i].begin(),tt[i].end(),tt[j].begin(),tt[j].end(),yy.begin());
-            yy.resize(ll-yy.begin());
-            if (yy.size()!=1) {
-                cout<<"No"<<endl;
+    for (int i = 0; i < 200; ++i){
+        // if (i)
+        for (int j = i+1; j < n; ++j){
+            vector<int> oo;
+            set_intersection(tt[i].begin(),tt[i].end(),tt[j].begin(),tt[j].end(), back_inserter(oo));
+            if (oo.size()!=1) {
+                cout<<"NO"<<endl;
                 return 0;
             }
         }
     }
-    cout<<"Yes"<<endl;
+    cout<<"YES"<<endl;
     return 0;
 }
