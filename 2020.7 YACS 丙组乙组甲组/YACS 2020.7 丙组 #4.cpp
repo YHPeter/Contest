@@ -1,4 +1,4 @@
-// # YACS 2020.7 丙组 #4
+# # YACS 2020.7 丙组 #4
 #include<bits/stdc++.h>
 using namespace std;
 int ans,n,k,t;
