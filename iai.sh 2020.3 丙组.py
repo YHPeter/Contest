@@ -28,12 +28,10 @@ def isPrime(n):
         return True
 
     if (n%2==0) or (n%3==0) or (n%5==0) or (n%7==0):
-        # print('if n==1 or n%2==0 or n%3==0 or n%5==0 or n%7==0 or n<=0:')
         return False
     else:
         for i in range(2,int(math.sqrt(n)+1),1):
             if n%i == 0:
-                # print(n)
                 return False
             else:
                 return True
@@ -56,7 +54,6 @@ if __name__ == "__main__":
 # 4.
 i = int(input())
 li = list(map(int,str(input()).split()))
-#除法
 from functools import reduce
 n = reduce(lambda a,b:a*b,li)
 for i in range(len(li)):

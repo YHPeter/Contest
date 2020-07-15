@@ -8,31 +8,6 @@
 80 1
 
 output:499/5'''
-# s = ['10 1\n', '214 2\n', '759 17\n', '718 15\n', '509 17\n', '305 6\n', '919 12\n', '984 19\n', '622 9\n', '20 13\n', '676 10\n']
-
-# import time
-# st = time.time()
-# n,k = 10,1
-# import sys,itertools
-# from fractions import Fraction
-# ans = 0
-# total_up, total_down,x = 0,0,[]
-# for i in s[1:]:
-#     x+=[[int(i.strip().split()[0])*int(i.strip().split()[1]),int(i.strip().split()[1])]]
-#     total_down+=x[-1][1]
-#     total_up+=x[-1][0]
-# for h in range(k+1):
-#     drop = list(itertools.combinations(x,h))
-#     while drop:
-#         up,down = 0,0
-#         for i in drop.pop():
-#             up,down = up+i[0],down+i[1]
-#         ans = max(ans,Fraction(total_up-up,total_down-down))
-# print(ans)
-# # print(time.time()-st)
-
-
-
 import sys,itertools
 from fractions import Fraction
 

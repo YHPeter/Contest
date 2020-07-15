@@ -72,27 +72,4 @@ if a2 > 0: a1 -= min(a1,36 - 4 * a2)
     
 ans += (a1 + 35) / 36
 #步骤6。
-print(ans)
-
-a = [0]+map(int,input().split(' '))
-
-int a[7], ans, share_1, share_2, t
-
-for (int i = 1 i <= 6 i ++ ) cin >> a[i]
-
-ans = a[6] + a[5] + a[4] + ceil(a[3]/4.0)
-
-share_2 = a[4] * 5
-if (a[3] % 4) share_2 += 7 - a[3]%4*2
-
-if (a[2] > share_2) {
-    t = a[2] - share_2
-    ans += ceil(t/9.0)
-}
-
-share_1 = 36*ans - 36*a[6] - 25*a[5] - 16*a[4] - 9*a[3] - 4*a[2]
-
-if (a[1] > share_1:
-    t = a[1] - share_1
-    ans += ceil(t/36.0)
-	
+print(int(ans)-2)

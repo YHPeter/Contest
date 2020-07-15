@@ -128,8 +128,6 @@ def timeRecord(func):
 # dp = [[0 for _ in range(l+1)] for _ in range(3)] #i,j 为每层又边界
 # a = r1+r2
 # res = 100000000000
-import numpy as np
-
 n=10
 r1 = np.array(("8 9 -6 -8 3 -1 4 -3 10 -7").split(' '))
 r2 = np.array(("-4 -10 -5 1 5 6 -2 7 -9 2").split(' '))

@@ -1,25 +1,3 @@
-'''
-偷校验数据
-n = input()
-print(n)
-
-
-
-'''
-
-# import sys
-# inputs = sys.stdin.readlines()
-# n,m = inputs[0].strip().split(' ')
-# n = int(n)
-# m = int(m)
-# l=[]
-# li = ['*']+[i for i in range(1,n+1)]+['*']
-# for s in inputs[1:]:
-#     inde = li.index(int(s.strip()))
-#     print(li[inde-1],li[inde+1])
-#     li.pop(inde)
-
-
 import sys
 inputs = sys.stdin.readlines()
 n,m = inputs[0].strip().split(' ')
@@ -98,52 +76,6 @@ for s in l:
 # o	3 表示左上方向；
 # o	4 表示左下方向。
 '''
-# n, m = map(int, input().split(' '))#n,m = 水果个数,体力
-# dp = []
-# goods = list(map(int,[1]+list(input())))
-# def cost(pre_pos,cur_pos):
-#     # pre_pos,cur_pos = int(pre_pos),int(cur_pos)
-#     # 1 表示右上方向；3
-#     # 2 表示右下方向；2
-#     # 3 表示左上方向；3
-#     # 4 表示左下方向。2
-#     res = [[0],[0,3,2,9,8],[0,3,2,9,8],[0,9,8,3,2],[0,9,8,3,2]]
-#     return res[pre_pos][cur_pos]
-
-# dp = [[0 for i in range(m+1)] for j in range(n)]
-# pre_pos = 1
-
-# for i in range(1,n):
-#     for j in range(m,2,-1):
-#         if j < cost(pre_pos,goods[i]):
-#             dp[i][j] = dp[i-1][j]
-#         else:
-#             choice1 = dp[i-1][j]
-#             choice2 = dp[i-1][j-cost(pre_pos,goods[i])]+1
-#             if choice1>=choice2:
-#                 dp[i][j]=choice1#不选
-#             else:
-#                 dp[i][j]=choice2#选
-#                 pre_pos = goods[i]
-                
-# print(dp)
-# print(dp[-1][-1])
-
-
-# n = 4    #物品数量
-# c = 8   # 背包的总载重量
-
-# import numpy as np
-
-# x = np.zeros([n+1,c+1])  # 建立n+1 * c+1维的矩阵
-
-# for i in range(1,n+1):   #矩阵中的第i行表示在不同载重量情况下对前i个物品的最优选择
-#     for j in range(c,0,-1):  #矩阵的每一列表示在载重量相同的情况下，取不同数量的物品的最优选择
-#         if j < w[i]:  # 如果要选择的物品的重量比载重量还重，那肯定不选取，最优解仍然是i-1下的j
-#             x[i,j] = x[i-1,j]
-#         else:#如果可以选，则要看选了之后的总价值比没选的总价值进行比较，选最大的
-#             x[i,j] = max(x[i-1,j],x[i-1,j-w[i]]+v[i])
-
 def test():
     n, m = map(int, input().split(' '))#n,m = 水果个数,体力
     dp = []
@@ -197,7 +129,6 @@ for i in range(n-1):
         ab = abs(city[i])
         d+=ab
         city[i+1]=city[i+1]+ab
-# print(city)
 print(d-abs(city[0]))
 # n = int(input())
 # city = list(map(int,input().split(' ')))
