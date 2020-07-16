@@ -33,57 +33,43 @@ p 25
 40
 代码提交区域
 '''
-# n,m = list(map(int,input().split(' '))) # n个人 m次政策和调整
-# citizen = [0]+list(map(int,input().split(' ')))
-# for i in range(m):
-#     a = input().split(' ')
-#     if a[0]=='p':
-#         val = int(a[1])
-#         for i in range(n+1):
-#             citizen[i]=max(citizen[i],val)
-#     elif a[0]=='i':
-#         citizen[int(a[1])] = int(int(a[2]))
-# for x in citizen[1:]: print (x)
+
+# 优化分四种情况 sample answer from https://iai.sh.cn/contribution/104
+
+n,m = list(map(int,input().split(' '))) # n个人 m次政策和调整
+a=[0]+list(map(int,input().split(' ')))
+ans,pos,value = [0]*200010,[0]*200010,[0]*200010
+max_line = 0
+for i in range(1,m+1):
+    op = input().split(' ')
+    if op[0]=='i': pos[i],value[i] = int(op[1]),int(op[2])
+    else: value[i] = int(op[1])
+
+for i in range(m,-1,-1):
+    if pos[i]==0: 
+        max_line = max(max_line,value[i])
+    else: 
+        if ans[pos[i]]==0: ans[pos[i]]=max(max_line,value[i])
+
+for i in range(1,n+1):
+    if ans[i]==0: print(max(a[i],max_line))
 
 
-
-# n,m = list(map(int,input().split(' '))) # n个人 m次政策和调整
-# ini=[0]+list(map(int,input().split(' ')))
-# citizen={}
-# for i in range(1,len(ini)):
-#     citizen[i]=ini[i]
-# # print(citizen)
-# max_p = 0
-# for i in range(m):
-#     a = input().split(' ')
-#     if a[0]=='p':
-#         # max_p = max(max_p,int(a[1]))
-#         for i in citizen.keys():
-#             citizen[i]=max(citizen[i],int(a[1]))
-#     elif a[0]=='i':
-#         citizen[int(a[1])] = int(int(a[2]))
-# for i in citizen.keys():
-#     x = citizen.get(i)
-#     if x==None: print(max_p)
-#     else: print(x)
-
-import sys
-c = sys.stdin.readlines()
-n,m = list(map(int,c[0].strip().split(' '))) 
-ini = [0]+list(map(int,c[1].strip().split(' '))) 
-max_p = 0
+# 无优化 30分
+n,m = list(map(int,input().split(' '))) # n个人 m次政策和调整
+ini=[0]+list(map(int,input().split(' ')))
 citizen={}
-for i in range(2,m+2):
-    a = c[i].strip().split(' ')
+for i in range(1,len(ini)):
+    citizen[i]=ini[i]
+max_p = 0
+for i in range(m):
+    a = input().split(' ')
     if a[0]=='p':
         for i in citizen.keys():
             citizen[i]=max(citizen[i],int(a[1]))
     elif a[0]=='i':
         citizen[int(a[1])] = int(int(a[2]))
-for i in range(1,n+1):
-    x = citizen.get(i,False)
-    if not x:
-        print(max(max_p,ini[i]))
-    else:
-        print(x)
-
+for i in citizen.keys():
+    x = citizen.get(i)
+    if x==None: print(max_p)
+    else: print(x)

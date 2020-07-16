@@ -1,28 +1,29 @@
-# YACS 2020.6乙组#2.py
-'''
-5
-21 38 12 24 13
-'''
-def area(a,b,c):
-    s = (a+b+c)/2
-    return (s*(s-a)*(s-b)*(s-c))*16
-def tri(a,b,c):
-    if (a + b <= c) or (a + c <= b) or (b + c <= a) : 
-        return False
-    return True
-n = int(input())
-t = [int(i) for i in input().split()]
-total_length = sum(t)
-dp = [[1 for _ in range(int(n*40/2))] for _ in range(int(n*40/2))]
-dp[0][0] = 1
+# YACS 2020.6 乙组 #2.py
+n,m = map(int,input().split(' '))
+np,mp = [],[]
+tn,tm = 0,0
+pren,prem = 0,0
+ans = 0
+lead,pre_lead =0,0
 for i in range(n):
-    for j in range(int(total_length/2)+1,0,-1):
-        for k in range(int(total_length/2)+1,0,-1):
-            if ((j >= t[i] and dp[j-t[i]][k]) or (k >= t[i] and dp[j][k-t[i]])):
-                dp[j][k] = 1
-ans = -1
-for i in range(int(total_length/2)+1):
-    for j in range(int(total_length/2)+1):
-        if (dp[i][j] and tri(i, j, total_length-i-j) and ans < area(i, j, total_length-i-j)):
-                ans = area(i, j, total_length-i-j)
-print(int(ans))
+    time,speed = map(int,input().split(' '))
+    tn+=time
+    np += [pren+speed*f for f in range(1,time+1)]
+    pren = np[-1]
+for i in range(m):
+    time,speed = map(int,input().split(' '))
+    mp += [prem+speed*f for f in range(1,time+1)]
+    prem = mp[-1]
+
+
+for i in range(1,min(len(np),len(mp))):
+    if np[i]>mp[i]:
+        lead = 1
+    elif np[i]<mp[i]:
+        lead = 2
+    elif np[i]==np[i]:
+        pass
+    if not lead == pre_lead:
+        ans+=1
+    pre_lead = lead
+print(ans-1)

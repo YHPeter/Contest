@@ -7,15 +7,56 @@
 插入操作：该操作还需要提供一个字符参数 ch，编辑器在光标的左侧插入该字符；
 删除操作：文本编辑器将删去光标右侧的字符，若光标右侧没有字符，则忽略这步操作。
 输入格式
-第一行：单个整数 mm；
-第二行到第 m+1m+1 行：每行表示一个操作；
+第一行：单个整数 m；
+第二行到第 m+1 行：每行表示一个操作；
 
 前进操作仅有一个字母 f。
 后退操作仅有一个字母 b；
 删除操作仅有一个字母 d；
 插入操作以字母 i 开头，后接一个字母，保证该字母是一个大写的英文字母， i 和该字母中间用一个空格分隔。
-'''
 
+输入：
+6
+f
+b
+i A
+b
+i B
+d
+输出：B
+
+输入：
+5
+i H
+i E
+i L
+i L
+i O
+输出：HELLO
+'''
+# Sample answer from https://iai.sh.cn/contribution/151
+pos_b = 0
+pos_e = 1000000
+s = [None]*1000010
+for _ in range(int(input())):
+    act = input().split(' ')
+    if act[0]=='i':
+        s[pos_b] = act[1]
+        pos_b+=1
+    elif act[0]=='f' and pos_e < 1000000:
+        pos_e += 1
+        s[pos_b] = s[pos_e]
+        pos_b += 1
+    elif act[0]=='b' and pos_b > 0:
+        pos_b -= 1
+        s[pos_b] = s[pos_e]
+        pos_e -= 1
+    elif act[0]=='d'and pos_e < 1000000:
+        pos_e+=1
+print(''.join(s[:pos_b]))
+
+
+# my solution
 import array,itertools
 class gapbuffer(object):
     TYPE_CODES = {"u": ('a', "unicode character")}
