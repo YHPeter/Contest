@@ -37,3 +37,8 @@
 18 21
 3 6
 '''
+
+n,k = map(int,input().split(' '))
+intervals = []
+for i in range(n):
+    intervals.append(list(map(int,input().split(' '))))

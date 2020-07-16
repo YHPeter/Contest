@@ -21,7 +21,7 @@
 90 99
 80 1
 '''
-'''
+
 # TLE
 import sys,itertools
 from fractions import Fraction
@@ -39,9 +39,8 @@ for h in range(k+1):
             up,down = up+i[0],down+i[1]
         ans = max(ans,Fraction(total_up-up,total_down-down))
 print(ans)
-'''
-# Sample anser from https://iai.sh.cn/contribution/154
 
+# Sample anser from https://iai.sh.cn/contribution/154
 def gcd(x,y):
     if y==0: return x
     else: return gcd(y,x%y)
