@@ -28,6 +28,19 @@
 说明:
 2->4->5->10
 '''
+# 参考c++题解的方法： https://iai.sh.cn/contribution/116
+
+ans = 0
+s,t = list(map(int,input().split(' ')))
+
+while t>s:
+    if t%2==1: t-=1
+    elif t/2>=s: t = t/2
+    else: break
+    ans+=1
+print(int(ans+(t-s)))
+
+
 # 超时
 s,t = list(map(int,input().split(' ')))
 dp = [0 for i in range(s,t+1)]
@@ -40,7 +53,7 @@ for i in range(1,t-s+1):
         dp[i] = dp[i-1]+1
 print(dp[t-s])
 
-# # 超时
+# 超时
 s,t = list(map(int,input().split(' ')))
 dp = [999999 for i in range(t+1)]
 dp[s]=0
