@@ -1,5 +1,5 @@
 # 乙组  2020年3月
-# 1.
+# 1. my answer 30分
 import sys
 n = int(input())
 inputs = sys.stdin.readlines()
@@ -42,11 +42,41 @@ for info in inputs[:n]:
             res.append(website[current])
         pass
     else: pass
-    
-# 2.
 
-n = int(input())
+# 1. sample answer from https:#iai.sh.cn/contribution/25
+import sys
+inputs = sys.stdin.readlines()
+n = int(inputs[0])
+content = inputs[1:]
+pages = []
+current = -1
+prekey = ''
+for line in content:
+    line = line.strip()
+    if line[0] == 'v':
+        current += 1
+        pages = pages[:current]
+        pages.append(line[2:])
+        print(pages[current])
+        prekey = 'v'
+    elif line[0] == 'b':
+        if current <= 0 :
+            print('?')
+        else:
+            current -= 1
+            print(pages[current])
+            prekey = 'b'
+    elif line[0] == 'f':
+        if current == len(pages)-1 or prekey == 'v':
+            print('?')
+        else:
+            current += 1
+            print(pages[current])  
+            prekey = 'f'
 
+# 2. my teacher answer
+# top =    [ 8,   9, -6, -8, 3, -1,  4, -3, 10, -7]
+# bottom = [-4, -10, -5,  1, 5,  6, -2,  7, -9,  2]
 def max_contiguous_subarray(A):
     max_overall = float('-inf')
     all_start_pos = None
@@ -69,16 +99,6 @@ def max_contiguous_subarray(A):
             all_end_pos = end_pos
     return max_overall, all_start_pos, all_end_pos
 
-    dp = [0 for _ in range(len(A+1))]
-    dp[0] = A[0]
-    for pos, a in enumerate(A):
-        if a>=0:
-            dp[pos] = dp[pos-1]+a
-        elif a<0:
-            dp[pos] = dp[pos-1]
-    return dp[len(A)]
-
-
 def max_contiguous_trapezoid(B, U):
     min_b_width = 3
     b_start_pos = None
@@ -97,43 +117,61 @@ def max_contiguous_trapezoid(B, U):
                 u_start_pos = b_start_pos + max_sub_u[1] + 1
                 u_end_pos = b_start_pos + max_sub_u[2] + 1
     return max_area, b_start_pos, b_end_pos, u_start_pos, u_end_pos
+n = input()
+top = list(map(int,input().split(' ')))
+bottom = list(map(int,input().split(' ')))
+print(max_contiguous_trapezoid(bottom, top))
 
-max_contiguous_trapezoid(input().split(' '), input().split(' '))
+# 3. sample answer from https:#iai.sh.cn/contribution/6
+ans = 0
+num = [0]*300100
+def cmp(a,b):
+    if a[0] < b[0]: return 1
+    elif a[0] == b[0] and a[1] < b[1]: return 1
+    else: return 0
+q = []
+n = int(input())
+for i in range(1,n+1):
+    q.append(list(map(int,input().split(' '))))
+q.sorted(cmp)
+for i in range(1,n+1):
+    if num[q[i][1]] > 0: num[q[i][1]]-=1
+    else: ans+=1
+    num[q[i][1] - 1]+=1
+print(ans)
 
+# 4. sample answer from https://iai.sh.cn/contribution/9
 
+s = [0]*100100
+dp = [0,1000000000,1000000000]+[0]*100002
+def cal(l,r):
+    point = 1
+    dis = s[l + 1] - s[l]
 
+    for i in range(1,r):
+        if s[i] != s[l]:
+            point = 2
 
+    if point == 2:
+        for i in range(1,r):
+            if (s[i + 1] - s[i] != dis) or (abs(dis) > 1): point = 4
 
-# 3
+    if point == 4:
+        for i in range(l+2,r+1):
+            if s[i] != s[i - 2]: point = 5
 
-# n = list(int(input()))
-# n = list(314159265358979323846)
+    if point == 5:
+        for i in range(1,r):
+            if s[i + 1] - s[i] != dis:point = 10
+    return point
 
-# dp = []
-def timeRecord(func):
-    import time
-    inside()
-    def inside():
-        start = time.time()
-        func()
-        print(time.time()-start)
-
-#凸性区域
-# l = int(input())
-# r1 = str(input()).split(' ')
-# r2 = str(input()).split(' ')
-# l=10
-# r1 = ("8 9 -6 -8 3 -1 4 -3 10 -7").split(' ')
-# r2 = ("-4 -10 -5 1 5 6 -2 7 -9 2").split(' ')
-# dp = [[0 for _ in range(l+1)] for _ in range(3)] #i,j 为每层又边界
-# a = r1+r2
-# res = 100000000000
-n=10
-r1 = np.array(("8 9 -6 -8 3 -1 4 -3 10 -7").split(' '))
-r2 = np.array(("-4 -10 -5 1 5 6 -2 7 -9 2").split(' '))
-dp = np.array([[0 for _ in range(n+1)] for _ in range(3)])
-print(dp)
-for i in range(n):
-    for j in range(1,n):
-        dp[i][j] = max(int(r1[i]),int(r1[i]) + int(dp[i-1][j-1]))
-print(dp)
+s = list(map(int,list(input())))+[0]
+r = 3
+while s[r]:
+    for l in range(max(1,r - 5),max(0,r - 2)+1):
+        if dp[r] == 0:
+            dp[r] = dp[l - 1] + cal(l,r)
+        else:
+            dp[r] = min(dp[r],dp[l - 1] + cal(l,r))
+    r+=1
+print(dp[len(s)],dp[:50])
