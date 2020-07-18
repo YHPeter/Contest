@@ -1,5 +1,4 @@
 # 1.
-
 a = int(input())
 b = int(input())
 c = int(input())
@@ -13,15 +12,15 @@ else:
     print('Not qualified')
 
 # 2.
-from collections import Counter
+# 若处于存活状态，用 * 表示，
+# 若处于死亡状态，用 . 表示。
 f = str(input()).split()
 n,m = int(f[0]),int(f[1])
 grid = []
 for i in range(n):
     grid.append(['.']+list(input())+['.'])
 grid.append(['.' for _ in range(n+2)])
-# point = [[i-1,j],[i,j-1],[i+1,j],[i,j+1],[i-1,j-1],[i-1,j-1],[i+1,j+1],[i+1,j+1]]
-# print(grid)
+
 def h(grid):
     point=[]
     nm = 0
@@ -43,8 +42,7 @@ def h(grid):
 t = [['.','.','.','.'],['.','*','*','.'],['.','*','*','.'], ['.','.','.','.']]
 h(grid)
             
-# 若处于存活状态，用 * 表示，
-# 若处于死亡状态，用 . 表示。
+
 
 # 3.
 #  824
@@ -63,17 +61,25 @@ for i in range(n-1):
         ab = abs(city[i])
         d+=ab
         city[i+1]=city[i+1]+ab
-# print(city)
-print(d)#+abs(city[-1])
+print(d)
 
 
+# 4. sample answer from https://iai.sh.cn/contribution/81
+a=input()
+if a.isnumeric()==True:
+  print("Valid")
+elif (a[0]=='-' or a[0]=='+') and a[1:].isnumeric()==True:
+  print("Valid")
+elif len(a)!=1 and a.count('.')==1 and a.find('.')!=-1:
+  print("Valid")
+else:
+  print('Invalid')
 
-# 4.
+# 4. my solution 90分
 def sdf(n):
     try: 
         h = int(n)
         return True
-        
     except:
         return False
         
@@ -100,45 +106,17 @@ else:
             if sdf(i): x+=1
     if x==2: print('Valid')
     else: print('Invalid')
-else: 
-print()
-m = []
-for i in range(len(n)):
-    m.append(n[i:i+1])
-x=0
 
-if m.count('.')==0:
-    x +=1
-    if m[0]=='-' or m[0]=='+':
-        if m.count('-')<=1 and m.count('+')<=1:
-            x +=1
-            h= n[1:]
-            l=0
-            for j in h:
-                if j in [0,1,2,3,4,5,6,7,8,9]: l+=1
-            if l == len(list(h)): x+=1
-elif m.count('.')==1:
-    new_sp = n.split('.')
-    if m[0]=='-' or m[0]=='+':
-        if m.count('-')<=1 and m.count('+')<=1:
-            x +=1
-            h= n[1:]
-            l=0
-            for j in h:
-                if j in [0,1,2,3,4,5,6,7,8,9]: l+=1
-            if l == len(list(h)): x+=1
-else: pass
+# 5. sample answer from https://iai.sh.cn/contribution/74
+n = int(input())
+a = [0]+list(map(int, input().split(' ')))
+a.sort()
+num=0
+for i in range(1,n+1):
+    num += (a[i] >= num)
+print(num)
 
-if x<3: print('Invalid')
-else: print('Valid')
-
-print(n,m)
-
-
-
-5.
-
-
+# 5. my solution 40分
 n = int(input())
 m = input().split(' ')
 m = sorted(list(map(int, m)))
@@ -164,26 +142,3 @@ elif len(u)>0:
     for i in range(u.count('#')):
         u.remove('#')
     print(len(u))
-########
-n = int(input())
-m = input().split(' ')
-m = sorted(list(map(int, m)))
-
-max_ = 0
-r=0
-u = []
-for i in range(n):
-    if i in m:
-        m.remove(i)
-    else: r=r+1
-if len(m)==0:
-    print(n)
-elif len(u)>0:
-    for i in m:
-        for k in u[:i]:
-            if k=='#':
-                r=r-1
-    for i in range(u.count('#')):
-        u.remove('#')
-    print(len(u))
-

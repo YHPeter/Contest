@@ -131,10 +131,10 @@ def cmp(a,b):
     else: return 0
 q = []
 n = int(input())
-for i in range(1,n+1):
-    q.append(list(map(int,input().split(' '))))
-q.sorted(cmp)
-for i in range(1,n+1):
+for i in range(n):
+    q.append(list(map(int,input().strip().split(' '))))
+q.sort()
+for i in range(n):
     if num[q[i][1]] > 0: num[q[i][1]]-=1
     else: ans+=1
     num[q[i][1] - 1]+=1
@@ -142,18 +142,16 @@ print(ans)
 
 # 4. sample answer from https://iai.sh.cn/contribution/9
 
-s = [0]*100100
 dp = [0,1000000000,1000000000]+[0]*100002
 def cal(l,r):
     point = 1
     dis = s[l + 1] - s[l]
 
-    for i in range(1,r):
-        if s[i] != s[l]:
-            point = 2
+    for i in range(l,r+1):
+        if s[i] != s[l]: point = 2
 
     if point == 2:
-        for i in range(1,r):
+        for i in range(l,r):
             if (s[i + 1] - s[i] != dis) or (abs(dis) > 1): point = 4
 
     if point == 4:
@@ -161,17 +159,20 @@ def cal(l,r):
             if s[i] != s[i - 2]: point = 5
 
     if point == 5:
-        for i in range(1,r):
-            if s[i + 1] - s[i] != dis:point = 10
+        for i in range(l,r):
+            if s[i + 1] - s[i] != dis: point = 10
     return point
 
-s = list(map(int,list(input())))+[0]
-r = 3
-while s[r]:
+s = [0]+list(map(int,list(input())))+[-1]
+
+for r in range(3,len(s)+2):
+    if s[r]==-1: break
+    print(max(1,r - 5),max(0,r - 2))
     for l in range(max(1,r - 5),max(0,r - 2)+1):
+        
         if dp[r] == 0:
             dp[r] = dp[l - 1] + cal(l,r)
         else:
             dp[r] = min(dp[r],dp[l - 1] + cal(l,r))
-    r+=1
-print(dp[len(s)],dp[:50])
+
+print(dp[len(s)-2])

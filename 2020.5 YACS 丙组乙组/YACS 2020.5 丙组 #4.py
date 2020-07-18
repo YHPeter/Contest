@@ -32,7 +32,6 @@
 
 ans = 0
 s,t = list(map(int,input().split(' ')))
-
 while t>s:
     if t%2==1: t-=1
     elif t/2>=s: t = t/2
