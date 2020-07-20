@@ -20,3 +20,25 @@ int main()
 	cout<<ans<<endl;
 	return 0;
 }
+
+// smapel answer from https://iai.sh.cn/contribution/235
+#include<bits/stdc++.h>
+using namespace std;
+int n,k,x,sum[200100];
+int main()
+{	 
+	cin>>n>>k;
+	
+	for(int i = 1;i <= n;++i) {
+		cin>>x;
+		sum[i] = (sum[i - 1] + x) % k;
+	}
+	
+	for(int r = 1;r <= n;++r)
+		for(int l = 1;l <= r;++l)
+			if(sum[r] == sum[l - 1])ans++;
+			
+	cout<<ans<<endl;
+	
+	return 0;
+}

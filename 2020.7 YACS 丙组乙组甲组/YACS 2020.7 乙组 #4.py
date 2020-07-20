@@ -131,3 +131,30 @@ if not res:
     print('NO')
 else:
     print('YES')
+
+
+# sample answer from C++
+edge = [0]*1100
+e = [[False]*10010 for _ in range(10010)]
+def check2(num,m):
+    for i in range(m+1):
+        for j in range(m+1):
+            if i==j: continue
+            elif num[i] != num[j] and e[num[i]][num[j]] == 0:  e[num[i]][num[j]] = 1
+            else: return 0
+
+def check0(sum,num,m):
+    for i in range(1,m+1): sum-=edge[num[i]]
+    for i in range(1,m+1): edge[num[i]]+=1
+    return sum==0
+
+def main():
+    n,m,k = map(int,input().split(' '))
+    for i in range(1,n+1):
+        num = list(map(int,input().split(' ')))
+        if not(check2(num,m)) or not(check0(i-1,num,m)):
+            print('NO')
+            return 0
+    print('YES')
+    return 0
+main()

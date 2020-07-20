@@ -26,3 +26,13 @@ for i in range(len(li)-1):
     else:
         ans+=x
 print(ans+x)
+
+
+# 
+n,x = map(int,input().split(' '))
+t = list(set(map(int,input().split(' '))))
+m = t[n - 1] - t[0]
+for i in range(n):
+    if t[i + 1] - t[i] > x:
+        m = m - (t[i + 1] - t[i]) + x
+print(x+m)
