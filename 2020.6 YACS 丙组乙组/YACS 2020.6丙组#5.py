@@ -1,4 +1,5 @@
-# YACS 2020.6丙组#4
+# YACS 2020.6丙组 #5
+# 影厅选座
 # sample solution from https://iai.sh.cn/contribution/175
 '''
 3 3 4
@@ -20,6 +21,7 @@ import sys
 a = [[0]*1101 for _ in range(1102)]
 ans = 999999999
 num= 0
+
 def two_pointers(l,r):
     sum = 0
     global ans
@@ -34,6 +36,7 @@ def two_pointers(l,r):
         sum -= a[b][r] - a[b][l - 1]
 
 n,m,cnt = map(int,input().split(' '))
+
 for i in range(1,n+1):
     x = input().strip()
     for j in range(1,len(x)+1):
