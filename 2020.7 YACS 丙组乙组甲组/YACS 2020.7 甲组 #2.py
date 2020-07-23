@@ -30,3 +30,26 @@
 行号0: 标准输出: 107 标准输入： ['20 4\n', '17 16 20 15 11 3 19 20 9 12 8 9 14 15 17 12 5 9 4 14\n']
 行号0: 标准输出: 104 标准输入： ['20 4\n', '6 11 18 20 19 12 11 7 9 18 16 13 12 5 4 3 11 6 17 10\n']
 '''
+# sample answer from https://iai.sh.cn/contribution/253
+n,m = map(int,input().split(' '))
+
+c = [0]+list(map(int,input().split(' ')))+[0]*50
+
+dp = [[999999999]*5050 for _ in range(5050)]
+
+dp[0][0] = 0
+
+for i in range(1,n+1):
+    dp[0][i] = c[i]
+
+for i in range(1,n+1):
+    tmp = 999999999
+    for j in range(1,m):
+        if i>=j:
+            tmp = min(tmp,dp[i - j][i])
+        dp[i][i - j + m] = min(dp[i][i - j + m],tmp + c[i - j + m])
+ans = 999999999
+for i in range(n-m+2,n+1):
+    for j in range(n-m+1,i):
+        ans = min(ans,dp[j][i])
+print(ans)
