@@ -16,6 +16,4 @@ for i in range(n):
         if j!=i:
             arr[i][j] = (arr[i][j-1]+a[j])%k
         if arr[i][j]==0: count+=1
-# for i in arr:
-#     print(i)
 print(count)
