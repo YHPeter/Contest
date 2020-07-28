@@ -29,7 +29,7 @@
 说明:
 取2号点和3号点作为支配集
 '''
-# sample answer from https://iai.sh.cn/contribution/172
+# sample answer from https://iai.sh.cn/contribution/172 # have bug
 e = [[0] for _ in range(200010)]
 w = [[0] for _ in range(200010)]
 dp = [[[0] for _ in range(200010)] for _ in range(3)]
