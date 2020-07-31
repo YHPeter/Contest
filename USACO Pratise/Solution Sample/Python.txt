@@ -1,0 +1,28 @@
+"""
+ID: yuhao201
+LANG: PYTHON3
+TASK: test
+"""
+problem_name = 'test'
+import sys,itertools,functools
+
+def solution(pro_input):
+    k,n = pro_input.pop(0)
+    ans = 0
+    return ans
+
+# open file
+fin = open ('%s.in'%problem_name, 'r')
+fout = open ('%s.out'%problem_name, 'w')
+
+#input
+row_input = fin.readlines()
+pro_input = [list(map(int,i.strip().split(' '))) for i in row_input]
+
+#output
+ans = solution(pro_input)
+print(ans)
+
+# write answer and close files
+fout.write (str(ans) + '\n')
+fout.close()
