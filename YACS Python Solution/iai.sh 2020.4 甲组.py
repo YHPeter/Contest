@@ -61,3 +61,36 @@ for i in range(1,N+1):
         dp[i] = 1
     
 print(n - dp[N]) # 注意是求min{n-m} 
+
+# 3.修建树枝
+# sample answer from https://iai.sh.cn/contribution/72
+dp = [[0]*5010 for _ in range(5010)]
+son = [0]*5010
+bro = [0]*5010
+cost = [0]*5010
+def dfs(x):
+    if x == 0: return 0
+    global son,dp,coast,bro
+    x_bro = bro[x],x_son = son[x]
+    bro_num = dfs(x_bro),son_num = dfs(x_son)
+
+    for i in range(m+1):
+        dp[x][i] = dp[x_bro][i] + cost[x]
+
+    for i in range(bro_num+1):
+        for j in range(son_num+1):
+            dp[x][i + j + 1] = min(dp[x][i + j + 1],dp[x_bro][i] + dp[x_son][j])
+
+    return bro_num + son_num + 1
+
+n,m = map(int,input().split(' '))
+
+for i in range(2,n+1):
+    fa,cost[i] = map(int,input().split(' '))
+    bro[i] = son[fa]
+    son[fa] = i
+
+for i in range(1,m+1):
+    dp[0][i] = 9999999999
+dfs(1)
+print(dp[1][m])
