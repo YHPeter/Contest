@@ -1,10 +1,3 @@
-S = int(input())
-M = int(input())
-L = int(input())
-
-total = S + 2 * M + 3 * L
-
-if total >= 10:
-    print("happy")
-else:
-    print("sad")
+s,m,l = int(input()),int(input()),int(input())
+if s+2*m+3*l>=10: print('happy')
+else: print('sad')

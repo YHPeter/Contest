@@ -1,16 +1,9 @@
+t,s = input(),input()
+s = s+s
 import sys
-base = input()
-test = input()
-
-def cyc (string):
-    output = []
-    for i in range(len(string)):
-        test = str(string)
-        temp = test[i:] + test[0:i]
-        output.append(temp)
-    return(output)
-for i in (cyc(test)):
-    if i in base:
+l = len(s)//2
+for i in range(l):
+    if s[i:i+l] in t:
         print('yes')
         sys.exit()
 print('no')
