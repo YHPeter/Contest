@@ -3,6 +3,7 @@ def Counter(s):
     for i in s: ini[i]+=1
     return ini
 
+from typing import Counter
 n = input()
 h = '#'+input()
 count=0
@@ -18,6 +19,7 @@ for i in range(1,hl-nl+1):
     if h[i+nl-1] in n and not curWord in c and curCount==std: 
         count+=1
         c.add(curWord)
+
 print(count)
 
 # # 7分
