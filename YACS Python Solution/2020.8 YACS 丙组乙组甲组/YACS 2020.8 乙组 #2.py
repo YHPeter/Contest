@@ -3,7 +3,7 @@
 3
 200 120
 50 40
-20 10
+40 10
 '''
 def stdinput():
     '''simple input function'''
@@ -15,17 +15,27 @@ choose = []
 for i in range(int(input())):
     choose.append(stdinput())
 
-ans = 0
+ans = 1
 
-def f(o,i,cho,ans):
-    if len(cho)==1:
-        ans+=1
-        return ans
-    incho = sorted(cho,key = (lambda x: x[1]))
-    for k in range(len(cho),-1,-1):
-        if incho[k][0]<=i:
-            ans+=1
-            o,i = incho[k][0],incho[k][1]
-            break
-        else: incho.pop()
-    f(o,i,cho,ans)
+def f(inside,choose):
+    global ans
+    if len(choose)==0: return
+    if len(choose)==1:
+        ans+=(inside//choose[0][0])
+        return
+    while 1:
+        insideli = [i[1] for i in choose]
+        cur_outside,cur_inside = choose.pop(insideli.index(max(insideli)))
+        # if inside//cur_outside==0: break
+        ans+=(inside//cur_outside)
+        for i in range(inside//cur_outside):
+            f(cur_inside,choose)
+        inside %= cur_outside
+        if inside<min([i[0] for i in choose]): break
+        
+
+inside_ = sorted(choose,key = (lambda x: x[1]))
+ind = inside_[-1][1]
+inside_.pop()
+f(ind,inside_)
+print(ans)
