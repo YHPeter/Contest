@@ -5,6 +5,16 @@
 2 2
 4 1
 4 2
+
+8
+1 3
+3 3
+3 7
+5 5
+7 9
+9 5
+9 1
+20 10
 '''
 def stdinput():
     '''simple input function'''
@@ -15,12 +25,17 @@ def stdinput():
 
 n = int(input())
 ans = n
-c = []
-max_height = [-1]*(n+1)
+heights = {}
 for i in range(n):
     x,y = stdinput()
-    max_height[x] = max(max_height[x],y)
-    c.append([x,y])
-c.sort(key = (lambda x:x[0]))
-for i in range(n):
-    if 
+    heights[x] = max(heights.get(x,0),y)
+print(heights)
+key = list(heights.keys())
+for x in key:
+    y = heights.get(x,0)
+    for dy in range(1,y):
+        if heights.get(x-dy,1000000001)<=y-dy:
+            heights.pop(x-dy)
+        if heights.get(x+dy,1000000001)<=y-dy:
+            heights.pop(x+dy)
+print(len(heights.keys()))

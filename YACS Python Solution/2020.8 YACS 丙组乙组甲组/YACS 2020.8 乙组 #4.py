@@ -10,8 +10,8 @@
 输出: 5
 
 输入：
-10 2 1 1 1
-输出: 8
+13 2 1 1 1
+输出: 16
 
 输入：
 910 1 2 3 4
@@ -42,9 +42,10 @@
 
 910 1 2 3 4
 900 1 2 3 4
-999 1 1 1 3
 998 1 1 1 2
+999 1 1 1 3
 1000 4 3 2 1
+1000 1 1 1 1
 
 '''
 def stdinput():
@@ -55,17 +56,14 @@ def stdinput():
     return list(map(strint,input().strip().split()))
 def solution():
     n,a,b,c,d = stdinput()
-
-
-    dp = [[0]*(4) for _ in range(n)]
-
-    for i in range(a,n):
-        dp[i][0] = max(dp[i-a][0],dp[i-a][1],dp[i-a][2],dp[i-a][3])+1
-        dp[i][1] = dp[i-b][0]
+    dp = [[0]*(4) for _ in range(n+1)]
+    dp[a][0] = 1
+    for i in range(a+1,n+1):
+        dp[i][0] = max(dp[i-a][0],dp[i-a][3])+1 #
+        dp[i][1] = max(dp[i-b][0],dp[i-b][3])
         dp[i][2] = dp[i-c][1]
-        dp[i][3] = dp[i-d][2]*2
-    # print(dp)
-    print(dp[-1][0]+1)
+        dp[i][3] = max(dp[i-d][0],dp[i-d][2]*2)
+    print(dp[n])
 
 for i in range(5):
     solution()
