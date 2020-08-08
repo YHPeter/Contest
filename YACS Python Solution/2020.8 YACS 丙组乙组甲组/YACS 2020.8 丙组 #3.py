@@ -48,7 +48,7 @@ def pattern(sm):
 
 ans = list(filter(pattern,goods))
 
-if len(ans)==0: print('There is no winner')
+if len(ans)==0: print('There is no winner.')
 else:
     print('Winning list:')
     for i in ans:

@@ -11,6 +11,14 @@
 5 1 3 2 4 1 1 2 3 4
 输出:
 3
+输入:
+3 3
+3 1 2
+输出: 0
+输入:
+18 7
+11 3 15 1 6 6 3 6 5 8 10 8 2 17 11 10 3 3
+输出: 3
 '''
 def stdinput():
     '''simple input function'''
@@ -22,6 +30,6 @@ def stdinput():
 n, k = stdinput()
 a = stdinput()
 from typing import Counter
-counts = [i for i in Counter(a).values()]
-counts.sort()
-print(sum(counts[:k-1]))
+counts = sorted([i for i in Counter(a).values()])
+if len(counts)<=k:print(0)
+else: print(sum(counts[:len(counts)-k]))

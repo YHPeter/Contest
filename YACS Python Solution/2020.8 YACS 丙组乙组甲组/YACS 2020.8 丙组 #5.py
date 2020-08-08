@@ -90,13 +90,13 @@
  /\  /\  /\  /\  /\  /\  /\  /\
 '''
 n = int(input())
+pattern1 = "/\\"
+pattern2 = "/__\\"
 if n==1:
     print(' '+pattern1)
     print(pattern2)
     exit()
 
-pattern1 = "/\\"
-pattern2 = "/__\\"
 c = [[0]]
 
 for j in range(2,n+1):
