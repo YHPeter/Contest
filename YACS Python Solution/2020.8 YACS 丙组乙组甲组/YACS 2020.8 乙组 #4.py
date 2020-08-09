@@ -59,11 +59,11 @@ def solution():
     dp = [[0]*(4) for _ in range(n+1)]
     dp[a][0] = 1
     for i in range(a+1,n+1):
-        dp[i][0] = max(dp[i-a][0],dp[i-a][3])+1 #
-        dp[i][1] = max(dp[i-b][0],dp[i-b][3])
+        dp[i][0] = max(dp[i-a][0],dp[i-d][3])+1 #
+        dp[i][1] = max(dp[i-a][0],dp[i-d][3])
         dp[i][2] = dp[i-c][1]
-        dp[i][3] = max(dp[i-d][0],dp[i-d][2]*2)
-    print(dp[n])
+        dp[i][3] = max(dp[i-a][0],dp[i-c][2]*2)
+    print(max(dp[n]))
 
 for i in range(5):
     solution()
