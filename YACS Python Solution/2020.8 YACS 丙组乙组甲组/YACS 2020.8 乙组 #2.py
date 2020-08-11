@@ -1,5 +1,7 @@
 # YACS 2020.8 乙组 #2
 '''
+输出: 80
+输入：
 3
 200 120
 50 40
@@ -51,32 +53,42 @@ def stdinput():
         except: return x
     return list(map(strint,input().strip().split()))
 choose = []
+am,bm = 0,0
 for i in range(int(input())):
-    x = stdinput()
-    if not x in choose:
-        choose.append(x)
+    a,b= stdinput()
+    if not [a,b] in choose:
+        choose.append([a,b])
+        am,bm = max(a,am),max(b,bm)
 
-ans = 1
 
-def f(inside,choose):
-    global ans
-    if len(choose)==0: return
-    if len(choose)==1:
-        ans+=(inside//choose[0][0])
-        return
-    while 1:
-        insideli = [i[1] for i in choose]
-        cur_outside,cur_inside = choose.pop(insideli.index(max(insideli)))
-        if inside<cur_outside: continue
-        ans+=(inside//cur_outside)
-        for i in range(inside//cur_outside):
-            f(cur_inside,choose)
-        inside %= cur_outside
-        if not choose or inside<min([i[0] for i in choose]): break
+dp = [[0]*bm for _ in range(am)]
+
+for i in range(1,am+1):
+    for j in range(1,bm+1):
+        for a,b in choose:
+
+            dp[i][j] = max(dp[i][j],)
+
+
+print(dp[-1][-1])
+# ans = 1
+
+# def f(inside,choose,ans):
+#     if len(choose)==0: return ans
+#     if len(choose)==1:
+#         ans+=(inside//choose[0][0])
+#         return ans
+#     for cur_outside,cur_inside in choose:
+#         if inside<cur_outside: continue
+
+#         ans+=(inside//cur_outside)
+#         for i in range(inside//cur_outside):
+#             ans = max(ans,f(cur_inside,choose,ans))
+#         inside %= cur_outside
         
-print(choose)
-inside_ = sorted(choose,key = (lambda x: x[1]))
-ind = inside_[-1][1]
-inside_.pop()
-f(ind,inside_)
-print(ans)
+# print(choose)
+# inside_ = sorted(choose,key = (lambda x: x[1]))
+# ind = inside_[-1][1]
+# inside_.pop()
+# ans = f(ind,inside_)
+# print(ans)
