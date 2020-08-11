@@ -23,28 +23,23 @@ def stdinput():
         except: return x
     return list(map(strint,input().strip().split()))
 
-n = int(input())
-ans = 0
 heights = {}
-topx = set()
-removex = set()
-for i in range(n):
+for i in range(int(input())):
     x,y = stdinput()
     heights[x] = max(heights.get(x,0),y)
-    topx.add(x)
 
-print(heights,topx)
-
-for x in heights.keys():
+topx = set(heights.key())
+removex = set()
+for x in topx:
     if x in removex: continue
-    y = heights.get(x)
+    y = heights[x]
     for ts in topx.difference(removex):
         if ts<x-y or ts>x+y or ts==x: continue
-        ty = heights.get(ts)
+        ty = heights[ts]
         if (ts<x and ty<=(ts+y-x)) or (ts>x and ty<=(x+y-ts)):
             removex.add(ts)
 
-print(len(topx.difference(removex)))
+print(len(topx)-len(removex))
 
 # 超时
 # n = int(input())
