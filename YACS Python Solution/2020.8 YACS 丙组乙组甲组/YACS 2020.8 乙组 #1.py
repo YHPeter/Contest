@@ -28,7 +28,7 @@ for i in range(int(input())):
     x,y = stdinput()
     heights[x] = max(heights.get(x,0),y)
 
-topx = set(heights.key())
+topx = set(heights.keys())
 removex = set()
 for x in topx:
     if x in removex: continue
