@@ -1,23 +1,3 @@
-def sample(s):
-    w = 1
-    x = 2
-    y = 3
-    z = 4
-    for j in s:
-        if j == 'V':
-            w,x = x,w
-            y,z = z,y
-        if j == 'H':
-            w,y = y,w
-            z,x = x,z
-    print(w,x)
-    print(y,z)
-sample(input())
-#Q1
-# sample('VHVHVVHVHHHVHVVVVHVHVHVVVVVVVVVVVVVVVVVVVVVVVVVHHHHHHHHHHHHHHHHHHHHHVHVHVHVHHVHVHVHVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVHH')
-
-
-
 def prime(N):
     for i in range(2,N):
         if N%i == 0:
