@@ -1,32 +1,26 @@
-from typing import Counter, Deque
+from collections import deque
 
 n = int(input())
-points = [0]
-q = Deque()
+points = [[]]
 for i in range(n):
     points.append(list(map(int,input().split())))
-visited = set([1])
+visited,depth = [True,True]+[False]*(n-1),[1,1]+[0]*n
+ans = 100
+q = deque()
 q.append(1)
-depth = [0,1]+[999999999]*n
-endpoint = set()
-def dfs(cur,depth):
-    if points[cur]==[0] or cur in endpoint:
-        endpoint.add(cur)
-    else:
-        count = 0
-        for j in points[cur]:
-            if not j in visited:
-                q.append(j)
-                visited.add(j)
-                depth[j] = min(depth[j],depth[cur]+1)
-            else: count+=1
-        # if count == len(points[cur]): endpoint.add(cur)
-dep = []
-for i in range(1,n):
-    if i in visited and i in endpoint: dep.append(depth[i])
-print(dep)
-if len(visited)==n:print('Y\n%d'%min(dep))
-else:print('N\n%d'%min(dep))
+while q:
+    cur = q.popleft()
+    for node in points[cur]:
+        if node == 0:
+            ans = min(ans,depth[cur])
+        else:
+            if not visited[node]:
+                q.append(node)
+                depth[node] = depth[cur]+1
+                visited[node] = True
+
+if not False in visited: print('Y\n%d'%ans)
+else: print('N\n%d'%ans)
 
 '''Sample Input 1
 3
