@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
 string n,h,tmp;
 int ans,hl,nl;
@@ -17,8 +18,10 @@ map<string,int> counter (string str) {
 }
 
 int main(){
-    cin>>n;
-    cin>>h;
+    ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
+    std::cin>>n;
+    std::cin>>h;
     h = "#"+h;
     hl = h.size();
     nl = n.size();
