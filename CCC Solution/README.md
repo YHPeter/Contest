@@ -1,7 +1,7 @@
 # CCC Solution
 Offical Online Judging Website: https://cccgrader.com/
 
-Unoffical Solution Website: http://mmhs.ca/ccc/ (Provides solution from 1996-2015 with Python, Fake code, Java, C++ and difficulity classification)
+Unoffical Solution Website: http://mmhs.ca/ccc/ (Provides solution from 1996-2015 with Python, Fake code, Java, C++ and difficulty classification)
 
 ## Solution Summary:
 Question | Question Name | Highest Score
