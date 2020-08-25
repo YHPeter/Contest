@@ -4,7 +4,6 @@
 3 1 4 5
 4 3 4 6 7
 0
-
 '''
 while 1:
     x = list(map(int,input().split()))
@@ -15,16 +14,6 @@ while 1:
     flag = False
     ans = 999999
     for l in range(1,len(x)):
-        # newp = 0
-        # count=0
-        # tmp = x[1]
-        # for ini in range(1,len(x),l):
-        #     newp+=1
-        #     if tmp==x[ini]: count+=1
-        # if count==newp:
-        #     print(l)
-        #     flag = True
-        #     break
         tmp = []
         for i in range(1,len(x),l):
             if i+l>len(x): tmp.append(x[i:])
