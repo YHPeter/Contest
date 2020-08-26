@@ -32,6 +32,12 @@ Question | Question Name | Highest Score
 2017 J3|Exactly Electrical|15/15
 2017 J4|Favourite Times|15/15
 2017 J5|Nailed It!|None
+2016 J1|Tournament Selection|15/15
+2016 J2|Magic Squares|15/15
+2016 J3|Hidden Palindrome|15/15
+2016 J4|Arrival Time|15/15
+2016 J5 S2|Tandem Bicycle|15/15
+2016 S1|Ragaman|15/15
 2010 J1|What is n, Daddy?|15/15
 2010 J2|Up and Down|15/15
 2010 J3|Punchy|15/15
