@@ -10,7 +10,7 @@ Question | Question Name | Highest Score
 2020 J2|Epidemiology|15/15
 2020 J3|Art|15/15
 2020 J4|Cyclic Shifts|15/15
-2020 J5 S2|Escape Room|13/15
+2020 J5 S2|Escape Room|15/15
 2020 S1|Surmising a Sprinter's Speed|15/15
 2020 S3|Searching for Strings|7/15
 2020 S4|Swapping Seats|None
@@ -31,7 +31,7 @@ Question | Question Name | Highest Score
 2017 J2|Shifty Sum|15/15
 2017 J3|Exactly Electrical|15/15
 2017 J4|Favourite Times|15/15
-2017 J5|Nailed It!|None
+2017 J5|Nailed It!|15/15
 2016 J1|Tournament Selection|15/15
 2016 J2|Magic Squares|15/15
 2016 J3|Hidden Palindrome|15/15
