@@ -6,7 +6,7 @@
 
 Offical Website: [CCC Online Grader](https://cccgrader.com/) *(Support Online Pratise with Judgment)*
 
-Past Contest: [CCC Past Contest](https://cemc.uwaterloo.ca/contests/past_contests.html#ccc)
+Past Contests: [CCC Past Contest](https://cemc.uwaterloo.ca/contests/past_contests.html#ccc)
 
 ## **Shanghai Computer Society Contest Platform (YACS)**
 
@@ -14,7 +14,7 @@ Past Contest: [CCC Past Contest](https://cemc.uwaterloo.ca/contests/past_contest
 
 Offical Website: [上海市计算机学会竞赛平台](https://iai.sh.cn/) *(**NOT** Support Online Pratise with Judgment)*
 
-Past Contest: [题目集](https://iai.sh.cn/problem/index)
+Past Contests: [题目集](https://iai.sh.cn/problem/index)
 
 ## **USA Computing Olympiad (USACO)**
 
