@@ -48,22 +48,22 @@
 1000 1 1 1 1
 
 '''
-def stdinput():
-    '''simple input function'''
-    def strint(x):
-        try: return int(x)
-        except: return x
-    return list(map(strint,input().strip().split()))
-def solution():
-    n,a,b,c,d = stdinput()
-    dp = [[0]*(4) for _ in range(n+1)]
-    dp[a][0] = 1
-    for i in range(a+1,n+1):
-        dp[i][0] = max(dp[i-a][0],dp[i-d][3])+1 #
-        dp[i][1] = max(dp[i-a][0],dp[i-d][3])
-        dp[i][2] = dp[i-c][1]
-        dp[i][3] = max(dp[i-a][0],dp[i-c][2]*2)
-    print(max(dp[n]))
 
-for i in range(5):
-    solution()
+s = input().split()
+n = int(s[0])
+a = int(s[1])
+b = int(s[2])
+c = int(s[3])
+d = int(s[4])
+dp = []
+for i in range(n+1):
+    dp.append([0, 0, 0, 0])
+    if i >= a:
+        dp[i][1] = dp[i-a][0]+1
+    if (i >= b + c):
+        dp[i][2] = dp[i - (b + c)][0]
+    if (i >= d):
+        for j in range(1, int(i/d)):
+            dp[i][3] = max(dp[i][3], dp[i - j*d][2]*j)
+    dp[i][0] = max(dp[i][1], dp[i][2], dp[i][3])
+print(dp[n][0])
