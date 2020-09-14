@@ -39,31 +39,14 @@
 输入：
 1000 1 1 1 1
 输出: 34996011596528190789960035633881941845650710894291398982812329702559247987190014771576210832368861184
-
-910 1 2 3 4
-900 1 2 3 4
-998 1 1 1 2
-999 1 1 1 3
-1000 4 3 2 1
-1000 1 1 1 1
-
 '''
 
-s = input().split()
-n = int(s[0])
-a = int(s[1])
-b = int(s[2])
-c = int(s[3])
-d = int(s[4])
-dp = []
+n,a,b,c,d = map(int,input().split())
+dp = [0]*(n+1)
 for i in range(n+1):
-    dp.append([0, 0, 0, 0])
-    if i >= a:
-        dp[i][1] = dp[i-a][0]+1
-    if (i >= b + c):
-        dp[i][2] = dp[i - (b + c)][0]
-    if (i >= d):
-        for j in range(1, int(i/d)):
-            dp[i][3] = max(dp[i][3], dp[i - j*d][2]*j)
-    dp[i][0] = max(dp[i][1], dp[i][2], dp[i][3])
-print(dp[n][0])
+    if i+a<=n: dp[i+a] = max(dp[i+a],dp[i]+1)
+    j = 0
+    while i + j * d + b + c <= n:
+        dp[i + j * d + b + c] = max(dp[i + j * d + b + c], dp[i]*j)
+        j+=1
+print(dp[-1])

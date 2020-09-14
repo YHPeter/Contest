@@ -46,29 +46,4 @@ def stdinput():
 n,m = stdinput()
 graph = {}
 for i in range(m):
-    a,b = stdinput()
-    graph[a],graph[b] = graph.get(a,set([b])),graph.get(b,set([a]))
-    graph[a].add(b)
-    graph[b].add(a)
-
-def dfs(start,end,visited):
-    visited.append(start)
-    if end in graph[start]:
-        visited.append(end)
-        return visited
-    for choose in sorted(list(graph[start])):
-        if choose in visited: continue
-        visited.append(choose)
-        dfs(choose,end,visited)
-    return visited
-
-res = [1]
-for i in range(2,n):
-    if not i in res: res+=dfs(res[-1],i,[])+[i]
-
-ans,alin = [],set()
-for i in res:
-    if not i in alin: 
-        ans.append(i)
-        alin.add(i)
-print(' '.join(map(str,ans)))
+    
