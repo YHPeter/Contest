@@ -20,6 +20,7 @@ Question | Question Name | Highest Score
 2019 J3|Cold Compress|15/15
 2019 J4 S1|Flipper|15/15
 2019 J5|Rule of Three|7/15
+2019 S2|Pretty Average Primes|15/15
 2018 J1|Telemarketer or not?|15/15
 2018 J2|Occupy parking|15/15
 2018 J3|Are we there yet?|15/15
