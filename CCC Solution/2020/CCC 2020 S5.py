@@ -1,6 +1,7 @@
+from typing import Counter
+
 n = int(input())
 b = list(map(int,input().split()))
-nb = max(b) #number of hambergers 
-
-dp =[[0]*max(b) for _ in n]
-dp[0][0] = 1/n
+numcount = Counter(b)
+maxnuber = max(b) #number of hambergers 
+count = [0]+[0]*maxnuber
