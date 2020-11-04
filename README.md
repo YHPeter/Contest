@@ -10,7 +10,7 @@ Past Contests: [CCC Past Contest](https://cemc.uwaterloo.ca/contests/past_contes
 
 ## **Shanghai Computer Society Contest Platform (YACS)**
 
-    This YACS Platform was open from March,2020 which is supported by Shanghai Shanghai Computer Society.
+    This YACS Platform was open from March,2020 which is supported by Shanghai Computer Society.
 
 Offical Website: [上海市计算机学会竞赛平台](https://iai.sh.cn/) *(**NOT** Support Online Pratise with Judgment)*
 
