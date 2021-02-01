@@ -1,46 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n,m,s, ans=99999;
-vector<int> results;
+int n, temp[100002], p[100002];
+long long ans;
 
-int maxlist(int tmp[51]){
-    int tmpans=0;
-    for(int i=0;i< n; i++) tmpans = max(tmpans,tmp[i]);
-    return tmpans;
-}
-
-void dfs(int power[51],int circles, int tt)
+void merge_sort(int l,int r)
 {
-    // tt: time_taken
-    if (circles==0){ans = min(ans, tt); return;}
+    if(l==r) return;
 
-    int max_v = maxlist(power);
+    int mid=l+((r-l)>>1);
+    merge_sort(l,mid);
+    merge_sort(mid+1,r);
 
-    for(int speed=1;speed<=n;speed++){
-        if (max_v<(speed*speed) || (circles-speed) < 0) break;
-        
-        int newlist[51];
-        for(int i=0;i< n; i++) newlist[i] = power[i]-speed;
+    for(int i=l;i<=r;++i) temp[i]=p[i];
 
-        for(int i=0;i< n; i++){
-            if (newlist[i] == max_v-speed){ 
-                newlist[i] = newlist[i]+speed-speed*speed; 
-                break;
-            }
-        }
-        dfs(newlist, circles-speed, tt+1);
+    int i1=l,i2=mid+1;
+    for(int i=l;i<=r;++i)
+    {
+        if(i1>mid) p[i]=temp[i2++];
+        else if(i2>r)  p[i]=temp[i1++];
+        else if(temp[i1]<=temp[i2]) p[i]=temp[i1++];
+        else if(temp[i1]>temp[i2]){ans+=mid-i1+1;p[i]=temp[i2++];}
     }
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin>>n>>m>>s;
 
-    int value[51];
-    for (int i=0;i<n;i++) value[i]=m;
-    dfs(value,s,0);
+    cin>>n;
+    int a[n], b[n];
+    for(int i=0;i<n;i++)cin>>a[i];
+    for(int i=0;i<n;i++)cin>>b[i];
 
+    std::map<int,int> keytable;
+    for (int i=0;i<n;i++) keytable[a[i]] = i;
+    for (int i=0;i<n;i++) p[i] = keytable[b[i]];
+
+    merge_sort(0,n-1);
     cout<<ans<<endl;
     return 0;
 }
