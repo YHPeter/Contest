@@ -6,6 +6,11 @@ Unoffical Solution Website: http://mmhs.ca/ccc/ (Provides solution from 1996-201
 ## Solution Summary:
 Question | Question Name | Highest Score
 :---: |:---: |:---:
+2021 S1|Crazy Fencing|15/15
+2021 J5 S2|Modern Art|15/15
+2021 S3|Lunch Concert|4/15
+2021 S4|Daily Commute|0/15
+2021 S5|Math Homework|3/15
 2020 J1|Dog Treats|15/15
 2020 J2|Epidemiology|15/15
 2020 J3|Art|15/15
